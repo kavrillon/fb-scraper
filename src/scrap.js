@@ -16,6 +16,12 @@ const sleep = async (ms) => {
   });
 }
 
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+}
+
 const ID = {
   login: '#email',
   pass: '#pass'
@@ -51,7 +57,7 @@ const ID = {
   await page.goto(URL, {
     waitUntil: 'networkidle2'
   });
-  await page.waitForNavigation();
+  //await page.waitForNavigation();
 
   const html = await page.content();
   fs.writeFileSync(FOLDER_OUTPUT + '/facebook.html', html);
@@ -59,4 +65,9 @@ const ID = {
   await page.screenshot({
     path: FOLDER_OUTPUT + '/facebook.png'
   });
+
+  const reviews = await page.$$eval('.userContent', reviews => reviews.map(r => r.textContent));
+  fs.writeFileSync(FOLDER_OUTPUT + '/facebook.json', JSON.stringify(reviews));
+
+  browser.close();
 })();
