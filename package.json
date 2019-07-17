@@ -1,0 +1,22 @@
+{
+  "name": "net-scrapper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kavrillon/net-scrapper.git",
+  "author": "<kevin@avrillon.me>",
+  "license": "MIT",
+  "scripts": {
+    "scrap": "rimraf dist && babel-node src/scrap.js"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "puppeteer": "^1.18.1",
+    "rimraf": "^2.6.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/node": "^7.5.0",
+    "@babel/preset-env": "^7.5.4"
+  }
+}
